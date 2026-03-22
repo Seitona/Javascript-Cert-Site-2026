@@ -296,102 +296,128 @@
 
   <script>
     const questions = [
-      {
-        id: 1,
-        title: 'QUESTION 1',
-        lead: 'You are developing a Python application for your company. You write the following code.',
-        code: `numList = [1, 2, 3, 4, 5]\nalphaList = ["a", "b", "c", "d", "e"]\nprint(numList is alphaList)\nprint(numList == alphaList)\nnumList = alphaList\nprint(numList is alphaList)\nprint(numList == alphaList)`,
-        prompt: 'What sequence is displayed by the four print statements?',
-        choices: [
-          'False, False, True, True',
-          'False, True, True, False',
-          'True, False, False, True',
-          'True, True, True, True'
-        ],
-        answer: 0,
-        explanation: '`is` checks object identity. Initially the lists are different objects and not equal in content. After `numList = alphaList`, both names reference the same list, so both checks become True.'
-      },
-      {
-        id: 2,
-        title: 'QUESTION 2',
-        lead: 'You are working with Python collections.',
-        code: `values = [10, 20, 30]\nvalues.append(40)\nvalues.insert(1, 15)\nprint(values)`,
-        prompt: 'What is printed?',
-        choices: [
-          '[10, 20, 30, 40, 15]',
-          '[10, 15, 20, 30, 40]',
-          '[15, 10, 20, 30, 40]',
-          '[10, 20, 15, 30, 40]'
-        ],
-        answer: 1,
-        explanation: '`append(40)` adds to the end. `insert(1, 15)` inserts 15 at index 1.'
-      },
-      {
-        id: 3,
-        title: 'QUESTION 3',
-        lead: 'You need to evaluate basic Python string behavior.',
-        code: `text = "Python"\nprint(text[0])\nprint(len(text))`,
-        prompt: 'Which outputs are correct?',
-        choices: [
-          'P and 6',
-          'y and 5',
-          'P and 5',
-          '0 and 6'
-        ],
-        answer: 0,
-        explanation: 'The first character at index 0 is `P`, and the length of `Python` is 6.'
-      },
-      {
-        id: 4,
-        title: 'QUESTION 4',
-        lead: 'You are writing conditional logic in Python.',
-        code: `x = 7\ny = 4\nif x > 5 and y < 5:\n    print("A")\nelse:\n    print("B")`,
-        prompt: 'What is displayed?',
-        choices: ['A', 'B', 'True', 'False'],
-        answer: 0,
-        explanation: 'Both conditions are True, so the `if` block runs.'
-      },
-      {
-        id: 5,
-        title: 'QUESTION 5',
-        lead: 'You are creating a function in Python.',
-        code: `def multiply(a, b=2):\n    return a * b\n\nprint(multiply(5))`,
-        prompt: 'What is displayed?',
-        choices: ['2', '5', '7', '10'],
-        answer: 3,
-        explanation: 'Because `b` defaults to 2, the result is `5 * 2`.'
-      },
-      {
-        id: 6,
-        title: 'QUESTION 6',
-        lead: 'You are evaluating a Python loop.',
-        code: `total = 0\nfor i in range(1, 4):\n    total += i\nprint(total)`,
-        prompt: 'What is printed?',
-        choices: ['3', '6', '7', '10'],
-        answer: 1,
-        explanation: '`range(1, 4)` produces 1, 2, 3. Their sum is 6.'
-      },
-      {
-        id: 7,
-        title: 'QUESTION 7',
-        lead: 'You are working with dictionaries in Python.',
-        code: `person = {"name": "Ana", "age": 19}\nprint(person["name"])`,
-        prompt: 'What is displayed?',
-        choices: ['person', 'Ana', 'name', '19'],
-        answer: 1,
-        explanation: 'The key `"name"` returns the value `"Ana"`.'
-      },
-      {
-        id: 8,
-        title: 'QUESTION 8',
-        lead: 'You need to identify the Python data type.',
-        code: `value = (1, 2, 3)`,
-        prompt: 'What type of object is `value`?',
-        choices: ['list', 'tuple', 'set', 'dict'],
-        answer: 1,
-        explanation: 'Parentheses with comma-separated items create a tuple.'
-      }
-    ];
+// Q1
+{
+ id:1,title:'QUESTION 1',lead:'Evaluate the JavaScript code.',
+ code:`var numList = [1,2,3,4,5];
+var alphaList = ["a","b","c","d","e"];
+console.log(numList === alphaList);
+console.log(numList == alphaList);
+numList = alphaList;
+console.log(numList === alphaList);
+console.log(numList == alphaList);`,
+ prompt:'What is displayed?',
+ choices:['false false true true','false true true false','true false false true','true true true true'],
+ answer:0,explanation:'Different arrays ≠ same reference; after assignment they are same.'
+},
+// Q2
+{
+ id:2,title:'QUESTION 2',lead:'Objects and primitives.',
+ code:`function change(student, course){student="JS Student";course.name="JS";course.grade=100;}
+var sampleCourse={name:"HTML",grade:90};
+var sampleStudent="HTML Student";
+change(sampleStudent,sampleCourse);
+console.log(sampleStudent,sampleCourse.name,sampleCourse.grade);`,
+ prompt:'Final values?',
+ choices:[
+ 'HTML Student, JS, 100',
+ 'JS Student, JS, 100',
+ 'HTML Student, HTML, 90',
+ 'JS Student, HTML, 90'
+ ],
+ answer:0,explanation:'Primitive unchanged, object modified.'
+},
+// Q3
+{
+ id:3,title:'QUESTION 3',lead:'Array operations.',
+ code:`var arr=[20,40,60,80];
+arr.shift();
+arr.pop();
+arr.push(10);
+arr.unshift(100);
+console.log(arr);`,
+ prompt:'Result?',
+ choices:['[100,40,60,10]','[40,60,10]','[100,20,40,60]','[20,40,60,80]'],
+ answer:0,explanation:'Sequence of array operations.'
+},
+// Q4
+{
+ id:4,title:'QUESTION 4',lead:'typeof results.',
+ code:`var n;console.log(typeof n);
+var a="3.4";console.log(typeof a);
+var arr=["x"];console.log(typeof arr);
+var c=2.4;console.log(typeof c);
+var tag=null;console.log(typeof tag);`,
+ prompt:'Which sequence?',
+ choices:[
+ 'undefined,string,object,number,object',
+ 'undefined,string,array,number,null',
+ 'null,string,object,number,object',
+ 'undefined,string,object,string,object'
+ ],
+ answer:0,explanation:'Arrays & null are object.'
+},
+// Q5
+{
+ id:5,title:'QUESTION 5',lead:'Rounding.',
+ code:`var x=3.14159;console.log(x.toFixed(2));`,
+ prompt:'Which method used?',
+ choices:['toPrecision','toString','toFixed','valueOf'],
+ answer:2,explanation:'toFixed controls decimals.'
+},
+// Q6
+{
+ id:6,title:'QUESTION 6',lead:'Scope.',
+ code:`var val1=25,val2=4;function multiply(){return val1*val2;}
+console.log(multiply());
+function getProduct(){var val1=2,val2=3;function multiply(){return val1*val2;}return multiply();}`,
+ prompt:'Line1=100? Line2=100?',
+ choices:['Yes,No','Yes,Yes','No,Yes','No,No'],
+ answer:0,explanation:'Global=100, local=6.'
+},
+// Q7
+{
+ id:7,title:'QUESTION 7',lead:'Date month adjust.',
+ code:`var d=new Date();var m=d.getMonth();d.setMonth(m+1);`,
+ prompt:'Key methods?',
+ choices:['new Date,getMonth,setMonth','Date.now,month,set','getMonth,setMonth,Date','new,get,set'],
+ answer:0,explanation:'Correct API usage.'
+},
+// Q8
+{
+ id:8,title:'QUESTION 8',lead:'Loop + sum.',
+ code:`var sum=0;for(var j=0;j<10;j+=2){sum+=j;}console.log(sum);`,
+ prompt:'Key parts?',
+ choices:['[],push,j+=2,numbers[j]','j+=2 only','push only','numbers[j] only'],
+ answer:0,explanation:'Matches given pattern.'
+},
+// Q9
+{ id:9,title:'QUESTION 9',lead:'Data types.',code:`var flightDestination="Denver";var flight=5;var roundTrip=2489.58;var onTime=true;var id=flight+flightDestination;`,prompt:'Type of id?',choices:['string','number','boolean','object'],answer:0,explanation:'number+string → string.'},
+// Q10
+{ id:10,title:'QUESTION 10',lead:'Math.',code:`Math.ceil(100.5);Math.floor(100.5);Math.round(100.5);`,prompt:'round result?',choices:['100','101','102','99'],answer:1,explanation:'round=101.'},
+// Q11
+{ id:11,title:'QUESTION 11',lead:'Date.',code:`new Date(2017,0,1);`,prompt:'Month value?',choices:['0','1','12','-1'],answer:0,explanation:'Jan=0.'},
+// Q12
+{ id:12,title:'QUESTION 12',lead:'Logic.',code:`if(temp>65 && !rain){} else if(fuel<=.5){}`,prompt:'Operators?',choices:['&& and <=','|| and >','&& and >','|| and <='],answer:0,explanation:'Correct.'},
+// Q13
+{ id:13,title:'QUESTION 13',lead:'Function.',code:`if(age<5||age>=65){} if(age>=5&&age<18){}`,prompt:'Conditions?',choices:['correct','incorrect','partial','none'],answer:0,explanation:'Matches rules.'},
+// Q14
+{ id:14,title:'QUESTION 14',lead:'Switch.',code:`switch(day){case"Wednesday":break;default:break;}`,prompt:'Keywords?',choices:['switch,case,default','if,else','loop','none'],answer:0,explanation:'Switch syntax.'},
+// Q15
+{ id:15,title:'QUESTION 15',lead:'Loop control.',code:`continue;break;`,prompt:'Skip & exit?',choices:['continue & break','break only','continue only','none'],answer:0,explanation:'Correct.'},
+// Q16
+{ id:16,title:'QUESTION 16',lead:'Countdown.',code:`for(var i=start;i>=0;--i){}`,prompt:'Loop parts?',choices:['var i=start,i>=0,--i','i<0','++i','none'],answer:0,explanation:'Correct.'},
+// Q17
+{ id:17,title:'QUESTION 17',lead:'Switch months.',code:`switch(month){case1:break;}`,prompt:'Key?',choices:['switch & break','if','loop','none'],answer:0,explanation:'Correct.'},
+// Q18
+{ id:18,title:'QUESTION 18',lead:'Safe divide.',code:`if(denominator=0){}`,prompt:'Always false?',choices:['No','Yes'],answer:0,explanation:'Assignment not comparison.'},
+// Q19
+{ id:19,title:'QUESTION 19',lead:'Logic.',code:`x=5;y=7;`,prompt:'x<7&&y>6?',choices:['True','False'],answer:0,explanation:'True.'},
+// Q20
+{ id:20,title:'QUESTION 20',lead:'Popups.',code:`prompt();alert();confirm();`,prompt:'Input?',choices:['prompt','alert','confirm','none'],answer:0,explanation:'prompt gets input.'},
+// Q21
+{ id:21,title:'QUESTION 21',lead:'Exception.',code:`try{eval(x);}catch(err){alert();}`,prompt:'Keywords?',choices:['try catch','if else','loop','none'],answer:0,explanation:'Exception handling.'}
+];
 
     const storageKey = 'its_python_quiz_progress_v1';
     const state = loadState();
