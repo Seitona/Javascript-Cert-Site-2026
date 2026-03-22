@@ -857,163 +857,223 @@ ___
   answer: 0,
   explanation: 'Correct string methods.'
 },
- {
+
+  {
     id: 50,
-    type: "drag_drop",
-    question: "Retrieve city and state from form inputs.",
-    code: `function getCityState() {
-  city = document.getElementById('city').value;
-  state = document.getElementById('state').value;
-}`,
-    answers: ["value", "value"]
+    title: 'Question 50',
+    lead: 'Examine the following function:',
+    code: `function getCityState() {\n  city = document.getElementById('city').value;\n  state = document.getElementById('state').value;\n}`,
+    prompt: 'Which property is used to retrieve the value from a form input field?',
+    choices: [
+      'innerHTML',
+      'value',
+      'getAttribute("value")',
+      'textContent'
+    ],
+    answer: 1,
+    explanation: 'The .value property retrieves the current value entered in a form input field.'
   },
 
   {
     id: 51,
-    type: "true_false",
-    question: "HTML output statements",
-    answers: [
-      { statement: "innerHTML must be used within document.write", answer: "No" },
-      { statement: "document.write is best for writing HTML to a new document", answer: "Yes" },
-      { statement: "innerHTML reads content between tags", answer: "Yes" }
-    ]
+    title: 'Question 51',
+    lead: '',
+    prompt: 'Which statement about HTML output is TRUE?',
+    choices: [
+      'innerHTML must be used within document.write',
+      'document.write is best for writing HTML to a new document',
+      'innerHTML cannot read content between tags',
+      'document.write and innerHTML work exactly the same way'
+    ],
+    answer: 1,
+    explanation: 'document.write is best suited for writing HTML to a new document. innerHTML reads or sets content between HTML tags and does not require document.write.'
   },
 
   {
     id: 52,
-    type: "drag_drop",
-    question: "Loop through object properties",
-    code: `for (i in car2) {
-  carOutput += car2[i] + " ";
-}`,
-    answers: [
-      "for (i in car2) {",
-      "carOutput += car2[i] + \" \";",
-      "}"
-    ]
+    title: 'Question 52',
+    lead: 'Examine the following code:',
+    code: `for (i in car2) {\n  carOutput += car2[i] + " ";\n}`,
+    prompt: 'What type of loop is being used to iterate over the object\'s properties?',
+    choices: [
+      'for...of loop',
+      'for...in loop',
+      'while loop',
+      'forEach loop'
+    ],
+    answer: 1,
+    explanation: 'The for...in loop iterates over the enumerable properties of an object, making it suitable for looping through object keys like those in car2.'
   },
 
   {
     id: 53,
-    type: "drag_drop",
-    question: "Form submission attributes",
+    title: 'Question 53',
+    lead: 'Examine the following form tag:',
     code: `<form action="thankyou.html" method="post" id="requestForm" onsubmit="checkFields();">`,
-    answers: ["action", "method", "post", "onsubmit"]
+    prompt: 'Which attribute specifies where the form data is sent when submitted?',
+    choices: [
+      'method',
+      'id',
+      'action',
+      'onsubmit'
+    ],
+    answer: 2,
+    explanation: 'The action attribute specifies the URL where the form data is sent upon submission. The method attribute specifies how (get/post), and onsubmit runs a function on submit.'
   },
 
   {
     id: 54,
-    type: "multiple_choice",
-    question: "Which method exposes data in the URL?",
-    options: ["put method", "get method", "patch method", "post method"],
-    answer: "get method"
+    title: 'Question 54',
+    lead: '',
+    prompt: 'Which HTTP method exposes form data in the URL?',
+    choices: [
+      'put method',
+      'get method',
+      'patch method',
+      'post method'
+    ],
+    answer: 1,
+    explanation: 'The GET method appends form data to the URL as query parameters, making it visible. POST sends data in the request body, keeping it hidden from the URL.'
   },
 
   {
     id: 55,
-    type: "drag_drop",
-    question: "Correct events for actions",
-    code: `<body onload="saleItemByDay();">
-
-<button id="sale" onclick="showSaleItem();">Show another sale item</button>
-
-<img src="item.jpg"
-     onmouseover="doubleSize();"
-     onmouseout="restoreSize();"
-     alt="item" />`,
-    answers: ["onload", "onclick", "onmouseover", "onmouseout"]
+    title: 'Question 55',
+    lead: 'Examine the following HTML:',
+    code: `<body onload="saleItemByDay();">\n\n<button id="sale" onclick="showSaleItem();">Show another sale item</button>\n\n<img src="item.jpg"\n     onmouseover="doubleSize();"\n     onmouseout="restoreSize();"\n     alt="item" />`,
+    prompt: 'Which event fires when the page finishes loading?',
+    choices: [
+      'onclick',
+      'onmouseover',
+      'onload',
+      'onmouseout'
+    ],
+    answer: 2,
+    explanation: 'The onload event fires when the page (or element) has fully loaded. onclick fires on click, onmouseover when the mouse enters, and onmouseout when it leaves.'
   },
 
   {
     id: 56,
-    type: "matching",
-    question: "Match events to behavior",
-    answers: [
-      { event: "onFocus", match: "An input field on a form is selected" },
-      { event: "onBlur", match: "One leaves an input field on a form" },
-      { event: "onChange", match: "A user updates a value in a form field" },
-      { event: "onKeyPress", match: "A character-producing key is selected" }
-    ]
+    title: 'Question 56',
+    lead: '',
+    prompt: 'Which event fires when a user updates a value in a form field?',
+    choices: [
+      'onFocus',
+      'onBlur',
+      'onChange',
+      'onKeyPress'
+    ],
+    answer: 2,
+    explanation: 'onChange fires when a form field\'s value changes. onFocus fires when a field is selected, onBlur when it loses focus, and onKeyPress when a key is pressed.'
   },
 
   {
     id: 57,
-    type: "drag_drop",
-    question: "Display list items line by line",
-    code: `function listItems() {
-  var itemList = ["Widget A","Widget C","Widget E"];
-
-  for (i = 0; i < itemList.length; i++) {
-    document.getElementById("list").innerHTML += itemList[i] + "<br />";
-  }
-}`,
-    answers: [
-      "for (i = 0; i < itemList.length; i++)",
-      "document.getElementById"
-    ]
+    title: 'Question 57',
+    lead: 'Examine the following function:',
+    code: `function listItems() {\n  var itemList = ["Widget A","Widget C","Widget E"];\n\n  for (i = 0; i < itemList.length; i++) {\n    document.getElementById("list").innerHTML += itemList[i] + "<br />";\n  }\n}`,
+    prompt: 'Which construct is used to iterate through all items in the array?',
+    choices: [
+      'while loop with itemList.size',
+      'for loop with itemList.length',
+      'for...in loop',
+      'forEach with a callback'
+    ],
+    answer: 1,
+    explanation: 'A standard for loop using itemList.length iterates through each index of the array. The .length property returns the number of elements in the array.'
   },
 
   {
     id: 58,
-    type: "drag_drop",
-    question: "Apply class to first paragraph",
-    code: `function setAltParaClass() {
-  document.getElementsByTagName("p")[0].setAttribute("class", "altPara");
-}`,
-    answers: ["getElementsByTagName", "0", "setAttribute"]
+    title: 'Question 58',
+    lead: 'Examine the following function:',
+    code: `function setAltParaClass() {\n  document.getElementsByTagName("p")[0].setAttribute("class", "altPara");\n}`,
+    prompt: 'Which method is used to apply a class to the first paragraph element?',
+    choices: [
+      'getElementById and className',
+      'getElementsByTagName and setAttribute',
+      'querySelector and classList.add',
+      'getElementsByClassName and setAttribute'
+    ],
+    answer: 1,
+    explanation: 'getElementsByTagName("p") returns all <p> elements; [0] selects the first one, and setAttribute("class", "altPara") applies the CSS class to it.'
   },
 
   {
     id: 59,
-    type: "true_false",
-    question: "DOM statements",
-    answers: [
-      { statement: "forms object is part of window object", answer: "No" },
-      { statement: "getElementsByClassName is part of document object", answer: "Yes" },
-      { statement: "open and close methods are part of document object", answer: "No" }
-    ]
+    title: 'Question 59',
+    lead: '',
+    prompt: 'Which statement about the DOM is TRUE?',
+    choices: [
+      'forms object is part of the window object',
+      'getElementsByClassName is part of the document object',
+      'open and close methods are part of the document object',
+      'The DOM and window object are the same thing'
+    ],
+    answer: 1,
+    explanation: 'getElementsByClassName is a method of the document object. The forms collection belongs to document, not window. open() and close() belong to window, not document.'
   },
 
   {
     id: 60,
-    type: "drag_drop",
-    question: "Display browser size",
-    code: `function showBrowserSize() {
-  document.getElementById("size").innerHTML =
-    "Width: " + window.innerWidth +
-    " Height: " + window.innerHeight;
-}`,
-    answers: ["document", "window", "window"]
+    title: 'Question 60',
+    lead: 'Examine the following function:',
+    code: `function showBrowserSize() {\n  document.getElementById("size").innerHTML =\n    "Width: " + window.innerWidth +\n    " Height: " + window.innerHeight;\n}`,
+    prompt: 'Which object provides the innerWidth and innerHeight properties for the browser viewport?',
+    choices: [
+      'document',
+      'navigator',
+      'window',
+      'screen'
+    ],
+    answer: 2,
+    explanation: 'The window object exposes innerWidth and innerHeight, which return the interior width and height of the browser viewport in pixels.'
   },
 
   {
     id: 61,
-    type: "multiple_choice",
-    question: "What is the output of substr?",
-    code: `contestants = "Robin, Shawn, Patsy";
-winner = contestants.substr(7,6);`,
-    options: ["S", "Shawn", "Shawn,", "hawn, P"],
-    answer: "Shawn,"
+    title: 'Question 61',
+    lead: 'Examine the following code:',
+    code: `contestants = "Robin, Shawn, Patsy";\nwinner = contestants.substr(7,6);`,
+    prompt: 'What is the value of winner after this code runs?',
+    choices: [
+      'S',
+      'Shawn',
+      'Shawn,',
+      'hawn, P'
+    ],
+    answer: 2,
+    explanation: 'substr(7, 6) starts at index 7 (the "S" in "Shawn") and extracts 6 characters: "Shawn," — including the comma that follows.'
   },
 
   {
     id: 62,
-    type: "multiple_choice",
-    question: "Popup message on page load",
-    options: [
-      `<body onload="alert('Welcome!')">`,
-      `<head onload="alert('Welcome!')">`,
-      `<body onopen="alert('Welcome!')">`,
-      `<head onopen="alert('Welcome!')">`
+    title: 'Question 62',
+    lead: '',
+    prompt: 'Which HTML tag and attribute combination shows a popup message when the page loads?',
+    choices: [
+      '<body onload="alert(\'Welcome!\')">',
+      '<head onload="alert(\'Welcome!\')">',
+      '<body onopen="alert(\'Welcome!\')">',
+      '<head onopen="alert(\'Welcome!)\'>">'
     ],
-    answer: `<body onload="alert('Welcome!')">`
+    answer: 0,
+    explanation: 'The onload event on the <body> tag fires when the page finishes loading. The <head> tag does not support onload, and onopen is not a valid HTML event.'
   },
 
   {
     id: 63,
-    type: "drag_drop",
-    question: "Generate random number 1–10",
+    title: 'Question 63',
+    lead: 'Examine the following expression:',
     code: `Math.floor((Math.random() * 10) + 1);`,
-    answers: ["Math.floor", "(Math.random() * 10) + 1"]
+    prompt: 'What range of integer values can this expression produce?',
+    choices: [
+      '0 to 9',
+      '0 to 10',
+      '1 to 10',
+      '1 to 11'
+    ],
+    answer: 2,
+    explanation: 'Math.random() returns [0, 1). Multiplying by 10 gives [0, 10). Adding 1 gives [1, 11). Math.floor then truncates to an integer, producing values 1 through 10 inclusive.'
   }
 ];

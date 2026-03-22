@@ -255,6 +255,7 @@
       <div class="toolbar">
         <button class="btn btn-gray" id="backToListTop">LIST</button>
         <button class="btn btn-green" id="nextTop">NEXT &gt;&gt;</button>
+        <button class="btn btn-green" id="backTop">BACK &lt;&lt;</button>
       </div>
       <hr class="rule" />
 
@@ -313,6 +314,7 @@
     document.getElementById('backToListTop').addEventListener('click', showList);
     document.getElementById('backToListBottom').addEventListener('click', showList);
     document.getElementById('nextTop').addEventListener('click', nextQuestion);
+    document.getElementById('backTop').addEventListener('click', backQuestion);
     document.getElementById('nextBottom').addEventListener('click', nextQuestion);
     document.getElementById('resetFromList').addEventListener('click', resetProgress);
 
@@ -421,6 +423,11 @@
     function nextQuestion() {
       const next = currentQuestion < questions.length ? currentQuestion + 1 : 1;
       showQuestion(next);
+    }
+
+    function backQuestion() {
+      const prev = currentQuestion > 1 ? currentQuestion - 1 : questions.length;
+      showQuestion(prev);
     }
 
     function renderQuestion() {
