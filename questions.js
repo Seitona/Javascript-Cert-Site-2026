@@ -1075,5 +1075,703 @@ ___
     ],
     answer: 2,
     explanation: 'Math.random() returns [0, 1). Multiplying by 10 gives [0, 10). Adding 1 gives [1, 11). Math.floor then truncates to an integer, producing values 1 through 10 inclusive.'
+  },
+{
+  id: 64,
+  title: 'QUESTION 64',
+  lead: 'For each statement regarding the use of external scripts, select Yes if the statement is true or No if the statement is false.',
+  prompt: 'Which Yes/No sequence is correct?',
+  choices: [
+    'No, No, Yes',
+    'Yes, No, Yes',
+    'No, Yes, Yes',
+    'Yes, Yes, No'
+  ],
+  answer: 0,
+  explanation: 'External scripts do not increase overall code security by themselves, inline code does not always take precedence, and external script files do not need script tags inside them.'
+},
+{
+  id: 65,
+  title: 'QUESTION 65',
+  lead: 'You have a line of code in a webpage and want to make sure it displays only if the browser a user is using does not support JavaScript.',
+  code: `___
+This browser does not support JavaScript.
+___`,
+  prompt: 'Using drag and drop, drag the correct set of tags into the missing areas.',
+  choices: [
+    '<noscript> and </noscript>',
+    '<alert> and </alert>',
+    '<!-- and -->',
+    '<script> and </script>'
+  ],
+  answer: 0,
+  explanation: 'The noscript element displays content only when JavaScript is not supported or is disabled.'
+},
+{
+  id: 66,
+  title: 'QUESTION 66',
+  lead: 'Look at the following code and determine which two statements about it are true.',
+  code: `const stores = ["Raleigh", "Charlotte", "Columbia"];
+
+for (i=0; i < stores.length; i++) {
+    storeList += stores[i] + "<br />"
+}`,
+  prompt: 'Which pair of statements is correct?',
+  choices: [
+    'The stores variable cannot be redefined, and the stores line in the for loop should be indented.',
+    'The for loop should be indented, and the stores variable should use static instead of const.',
+    'The stores variable can be redefined, and the for loop should be indented.',
+    'The stores line in the for loop should not be indented, and const should be replaced with var.'
+  ],
+  answer: 0,
+  explanation: 'A variable declared with const cannot be redefined, and the line inside the for loop body should be indented for proper code formatting.'
+},
+{
+  id: 67,
+  title: 'QUESTION 67',
+  lead: 'Which methods can be used to represent the operation of x = x − 1? (Choose two)',
+  prompt: 'Which pair is correct?',
+  choices: [
+    'x-- and x-=1',
+    'x=-1 and x-',
+    'x-- and x-',
+    'x-=1 and x=-1'
+  ],
+  answer: 0,
+  explanation: 'Both x-- and x-=1 subtract 1 from x.'
+},
+{
+  id: 68,
+  title: 'QUESTION 68',
+  lead: 'A new developer is using the Console window within a browser to test code for a new web app. The developer wants to be able to pause the code from running to test the validity of variables within the code.',
+  prompt: 'Which methods can the developer use to pause code as necessary? (Choose two)',
+  choices: [
+    'Add a breakpoint and add the code word, debugger',
+    'Add the code word, pause and add the code word, stop',
+    'Add a breakpoint and add the code word, stop',
+    'Add the code word, pause and add the code word, debugger'
+  ],
+  answer: 0,
+  explanation: 'You can pause execution in developer tools by setting a breakpoint or by inserting the debugger statement in code.'
+},
+{
+  id: 69,
+  title: 'QUESTION 69',
+  lead: 'Evaluate the following code.',
+  code: `rate = 5.99
+document.getElementById("results").innerHTML =
+    parseInt("22 23") +
+    parseFloat(" 25.99 is the price") +
+    parseInt(" The cat is 10") +
+    rate.toFixed(1);`,
+  prompt: 'What is the output of the code?',
+  choices: [
+    '22 25.99 NaN 6.0',
+    '22 25.99 NaN 5.99',
+    '22 23 25.99 10 5.99',
+    '22 23 25.99 NaN 6.0'
+  ],
+  answer: 0,
+  explanation: 'parseInt("22 23") gives 22, parseFloat(" 25.99 is the price") gives 25.99, parseInt(" The cat is 10") gives NaN, and rate.toFixed(1) gives "6.0".'
+},
+{
+  id: 70,
+  title: 'QUESTION 70',
+  lead: 'On a webpage that is used as a reporting page for your site, you are attempting to display how many times the productList class is being used, with the number of times the class is used to be displayed in a paragraph with an ID of productListOutput.',
+  code: `function getClasses() {
+    ___ ("productList");
+    ___ += "The class is used " + classList.length + " times.";
+}`,
+  prompt: 'Using the dropdown arrows, complete the function with the correct lines of code.',
+  choices: [
+    'var classList = document.getElementsByClassName and document.getElementById("productListOutput").innerHTML',
+    'var classList = document.getElementById and document.getElementsByClassName("productListOutput").innerHTML',
+    'var productList = document.getElementsByTagName and document.getElementById("productListOutput").value',
+    'var classList = document.querySelectorAll and document.write'
+  ],
+  answer: 0,
+  explanation: 'getElementsByClassName("productList") returns the matching elements, and innerHTML on the productListOutput element displays the count.'
+},
+{
+  id: 71,
+  title: 'QUESTION 71',
+  lead: 'For each statement regarding the DOM, select Yes if the statement is true or No if the statement is false.',
+  prompt: 'Which Yes/No sequence is correct?',
+  choices: [
+    'Yes, Yes, No',
+    'Yes, No, Yes',
+    'No, Yes, No',
+    'Yes, No, No'
+  ],
+  answer: 0,
+  explanation: 'innerHeight is a Window property, body is a Document object property reference, and innerHTML is not a Document property.'
+},
+{
+  id: 72,
+  title: 'QUESTION 72',
+  lead: 'You are writing code to generate a random number of 0, 1, or 2 so that a song can be played based on the number generated.',
+  code: `var songNumber = ___((___() * ___));`,
+  prompt: 'Using drag and drop, fill in the variable declaration for the songNumber variable.',
+  choices: [
+    'Math.floor, Math.random, 3',
+    'Math.ceiling, Math.random, 2',
+    'Math.floor, Math.rnd, 3',
+    'Math.random, Math.floor, 2'
+  ],
+  answer: 0,
+  explanation: 'Math.floor(Math.random() * 3) produces integers 0, 1, or 2.'
+},
+{
+  id: 73,
+  title: 'QUESTION 73',
+  lead: 'In the following code example, use the dropdown lists to complete the code so that it will attempt to display an order total, display an error message if there is an error, and always display a final message.',
+  code: `function grandTotal(amount, salesTax) {
+    try {
+        var orderTotal = amount + salesTax;
+        alert(ordertotal);
+    }
+    ___ {
+        alert("You have a problem");
+        alert(err.message);
+    }
+    ___ {
+        alert("If there are no errors, you should have your total");
+    }
+}`,
+  prompt: 'Which keywords complete the code?',
+  choices: [
+    'catch(err) and finally',
+    'catch and end',
+    'else and finally',
+    'catch(error) and complete'
+  ],
+  answer: 0,
+  explanation: 'catch(err) handles the exception and finally runs whether or not an error occurs.'
+},
+{
+  id: 74,
+  title: 'QUESTION 74',
+  lead: 'You are trying to build a function that will display the screen width and height when a user clicks a button. The function to accomplish this task is almost complete.',
+  code: `function screenSize() {
+    var pixelWidth = ___;
+    var pixelHeight = ___;
+}`,
+  prompt: 'Using the dropdown arrows, finish the code.',
+  choices: [
+    'screen.width and screen.height',
+    'window.width and window.height',
+    'screen.innerWidth and window.innerHeight',
+    'document.width and document.height'
+  ],
+  answer: 0,
+  explanation: 'The screen object provides the width and height of the user screen through screen.width and screen.height.'
+},
+{
+  id: 75,
+  title: 'QUESTION 75',
+  lead: 'Evaluate the following variables: w = 2, x = 9, y = -5, z = -10.',
+  code: `Math.sqrt(x)
+Math.min(w, x, y, z)
+Math.max(w, x, y, z)`,
+  prompt: 'Which results match these math functions?',
+  choices: [
+    '3, -10, 9',
+    '9, -5, 2',
+    '3, -5, 10',
+    '81, -10, 9'
+  ],
+  answer: 0,
+  explanation: 'Math.sqrt(9) is 3, the minimum value is -10, and the maximum value is 9.'
+},
+{
+  id: 76,
+  title: 'QUESTION 76',
+  lead: 'You are writing a line of code to set a variable to be empty when one clicks a button.',
+  code: `<button id="clearQty" onclick="qty.value = ___;">Clear</button>`,
+  prompt: 'Using the dropdown arrow, indicate the correct code to make the qty variable empty.',
+  choices: [
+    'null',
+    '0',
+    'undefined',
+    'false'
+  ],
+  answer: 0,
+  explanation: 'This question expects null as the value used to empty the qty field.'
+},
+{
+  id: 77,
+  title: 'QUESTION 77',
+  lead: 'Which operator represents not in JavaScript?',
+  prompt: 'Choose the correct operator.',
+  choices: ['!=', '!', '==', '!!'],
+  answer: 1,
+  explanation: 'The logical NOT operator in JavaScript is !'
+},
+{
+  id: 78,
+  title: 'QUESTION 78',
+  lead: 'Evaluate each statement regarding functions. Select Yes if the statement is true and No if the statement is false.',
+  prompt: 'Which Yes/No sequence is correct?',
+  choices: [
+    'No, Yes, No',
+    'Yes, Yes, No',
+    'No, No, Yes',
+    'Yes, No, No'
+  ],
+  answer: 0,
+  explanation: 'If x = 5 and y = 5, changing x to 10 does not change y, reusable code is a major benefit of functions, and constants cannot be redefined.'
+},
+ {
+    id: 79,
+    title: "QUESTION 79",
+    lead: "You are writing code for a series of training sessions. The sessions occur every seven days until the end date is reached. However, if a break date is reached, no more sessions are to be scheduled.",
+    code: `do {
+  sessionStartDate.setDate(sessionStartDate.getDate() + 7);
+
+  if (sessionStartDate.getDate() == sessionBreakDate.getDate()) {
+      break;
   }
+
+  detailsSchedule.innerHTML += "<br />" + sessionStartDate.toLocaleDateString();
+
+} while (sessionStartDate < sessionEndDate);`,
+    prompt: "Using the dropdown areas, fill in the missing pieces of the code to fulfill the logic needed for this code.",
+    choices: ["if, break, while", "while, continue, if", "if, continue, while", "do, break, if"],
+    answer: 0,
+    explanation: "The code checks the break date with if, exits using break, and continues looping with while."
+  },
+  {
+    id: 80,
+    title: "QUESTION 80",
+    lead: "You have a seven-day loop for determining the discount percentage. On the fifth day, the discount percentage is doubled.",
+    code: `var disc = .1;
+
+for (var i = 0; i < 7; i++) {
+  if (i == 4) {
+      disc = .2;
+  }
+}`,
+    prompt: "Using the drop-down arrow, fill in the missing code to make this loop function properly.",
+    choices: ["if and i == 4", "while and i == 5", "if and i == 5", "else if and i == 4"],
+    answer: 0,
+    explanation: "The fifth day is index 4 in a zero-based loop, so the correct condition is if (i == 4)."
+  },
+  {
+    id: 81,
+    title: "QUESTION 81",
+    lead: "Using drag and drop, fill in the missing code pieces to make the code block below satisfy the listed conditions for checked options.",
+    code: `if (document.getElementById('optionOne').checked && document.getElementById('optionTwo').checked) {
+  document.getElementById('optionsSelected').innerHTML = "You selected both options.";
+}
+else if (document.getElementById('optionOne').checked || document.getElementById('optionTwo').checked) {
+  if (document.getElementById('optionOne').checked) {
+      document.getElementById('optionsSelected').innerHTML = "You selected option one.";
+  } else {
+      document.getElementById('optionsSelected').innerHTML = "You selected option two.";
+  }
+} else {
+  document.getElementById('optionsSelected').innerHTML = "";
+}`,
+    prompt: "Which sequence of missing code pieces is correct?",
+    choices: [
+      "&&, else if, ||, if, else",
+      "||, else, &&, if, while",
+      "&&, if, ||, else if, else",
+      "!=, else if, &&, if, do"
+    ],
+    answer: 0,
+    explanation: "Both selected uses &&, one selected uses else if with ||, then the nested logic uses if and else."
+  },
+  {
+    id: 82,
+    title: "QUESTION 82",
+    lead: "A new JavaScript developer wants to make sure that when a price is set on hat1, hat2 has the same price, and when the price on one hat changes, the other stays the same. In the same code, the developer has a coat to put in two stores and wants both stores to update when another coat is added.",
+    code: `var hat1 = 20;
+var hat2 = hat1;
+
+var store1 = ["coat1"];
+var store2 = store1;`,
+    prompt: "Using the dropdown arrows, complete the code example to satisfy both requirements.",
+    choices: ['20 and ["coat1"]', '"20" and ["coat1"]', '20 and "coat1"', '"20" and "coat1"'],
+    answer: 0,
+    explanation: "Primitive numbers are copied by value, while arrays are assigned by reference."
+  },
+  {
+    id: 83,
+    title: "QUESTION 83",
+    lead: "You are trying to fill an HTML element called locations with a list of company locations. Part of the code has been built.",
+    code: `var locations = ["HQ", "Central", "West"];
+
+for (var i = 0; i < locations.length; i++) {
+  document.getElementById('locations').innerHTML += locations[i];
+}`,
+    prompt: "Using the dropdown lists, fill in the rest of the code.",
+    choices: [
+      '["HQ", "Central", "West"], locations.length, +=',
+      '("HQ", "Central", "West"), locations.size, =',
+      '["HQ", "Central", "West"], locations.size, +=',
+      '"HQ", "Central", "West", locations.length, ='
+    ],
+    answer: 0,
+    explanation: "The array is declared with brackets, the loop uses locations.length, and += appends each item."
+  },
+  {
+    id: 84,
+    title: "QUESTION 84",
+    lead: "Evaluate the following code.",
+    code: `ids = [2, 22, 24, 26, 28];
+
+document.getElementById("result").innerHTML = ids.find(checkId);
+
+function checkId(id) {
+  return id > 20;
+}`,
+    prompt: "What will be returned in the HTML element named result?",
+    choices: ["22", "22 24 26 28", "4", "1"],
+    answer: 0,
+    explanation: "find() returns the first matching array element, which is 22."
+  },
+  {
+    id: 85,
+    title: "QUESTION 85",
+    lead: "You are attempting to construct a message based on a temperature.",
+    code: `function compareClimates(temperature) {
+  if (temperature > 90) {
+      return "hot";
+  } else if (temperature >= 78) {
+      return "warm";
+  } else {
+      return "mild";
+  }
+}`,
+    prompt: "Using drag and drop, fill in the missing code pieces to make the logic work.",
+    choices: ["> and >=", ">= and >", "< and <=", "!= and >"],
+    answer: 0,
+    explanation: "Use > 90 for hot and >= 78 for warm."
+  },
+  {
+    id: 86,
+    title: "QUESTION 86",
+    lead: "Display the data type of a variable.",
+    code: `"Button" + " is a " + typeof "Button";`,
+    prompt: "Using the dropdown arrows, complete the code needed.",
+    choices: [
+      '"Button" is a  and typeof',
+      '"Button" is an and typeOf',
+      '"Button" =  and typeof',
+      '"Button" is a  and valueOf'
+    ],
+    answer: 0,
+    explanation: "typeof 'Button' returns 'string'."
+  },
+  {
+    id: 87,
+    title: "QUESTION 87",
+    lead: "Loop should not run if condition is false initially.",
+    prompt: "Which type of loop should the developer use?",
+    choices: ["while", "do", "for...in", "for"],
+    answer: 0,
+    explanation: "while checks condition first."
+  },
+  {
+    id: 88,
+    title: "QUESTION 88",
+    lead: "Add a paragraph element to a webpage.",
+    code: `function addSongMsg() {
+  var songP = document.createElement("p");
+  var songText = document.createTextNode("A new song has been added.");
+  songP.appendChild(songText);
+  document.getElementById('songlist').appendChild(songP);
+}`,
+    prompt: "Add the methods needed.",
+    choices: [
+      "createElement, createTextNode, appendChild",
+      "appendChild, createElement, setAttribute",
+      "createTextNode, appendChild, setAttribute",
+      "createElement, setAttribute, appendChild"
+    ],
+    answer: 0,
+    explanation: "Correct DOM creation flow."
+  },
+  {
+    id: 89,
+    title: "QUESTION 89",
+    lead: "Trigger function when key is released.",
+    code: `<input type="text" id="updateField" onkeyup="displayMessage()">`,
+    prompt: "Complete the line of code.",
+    choices: ["onkeyup", "onkeydown", "onkeypress", "onchange"],
+    answer: 0,
+    explanation: "onkeyup fires when key is released."
+  },
+  {
+    id: 90,
+    title: "QUESTION 90",
+    lead: "Display list items in another element.",
+    code: `document.getElementById("listItems").innerHTML =
+  document.getElementById("items").textContent;`,
+    prompt: "Fill in the code.",
+    choices: [
+      '"items" and textContent',
+      '"items" and innerHTML',
+      '"listItems" and textContent',
+      '"listItems" and innerHTML'
+    ],
+    answer: 0,
+    explanation: "textContent returns visible text."
+  },
+  {
+    id: 91,
+    title: "QUESTION 91",
+    lead: "Display message when key is pressed.",
+    code: `<input type="text" onkeydown="keyMessage();">`,
+    prompt: "Indicate the event.",
+    choices: ["onkeydown", "onkeyup", "onkeypress", "onclick"],
+    answer: 0,
+    explanation: "onkeydown fires on key press."
+  },
+  {
+    id: 92,
+    title: "QUESTION 92",
+    lead: "Populate a form field.",
+    code: `function fillState(location) {
+  var state = document.getElementById('state');
+  if (location == 'Orem') {
+      state.value = 'UT';
+  }
+}`,
+    prompt: "Choose the property.",
+    choices: ["state.value", "state.innerHTML", "state.textContent", "state.name"],
+    answer: 0,
+    explanation: "Form fields use .value"
+  },
+{
+  id: 93,
+  title: 'QUESTION 93',
+  lead: 'You have the following code within a JavaScript script: var productID = "3545"; var productPrice = 19.99; var inStock = 12. For each test below, select Yes if the result will be true and No if the result will be false.',
+  code: `var productID = "3545";
+var productPrice = 19.99;
+var inStock = 12;
+
+Number.isInteger(productID)
+Number.isInteger(productPrice)
+Number.isInteger(inStock)`,
+  prompt: 'Which Yes/No sequence is correct?',
+  choices: [
+    'No, No, Yes',
+    'Yes, No, Yes',
+    'No, Yes, Yes',
+    'No, No, No'
+  ],
+  answer: 0,
+  explanation: 'productID is a string, productPrice is not an integer, and inStock is an integer.'
+},
+{
+  id: 94,
+  title: 'QUESTION 94',
+  lead: 'You are attempting to see if a city someone enters matches one of three cities someone types in a form field. The cities should match no matter how a user types those fields in (uppercase, lowercase, or mixed case).',
+  code: `function checkCity(city) {
+  city = city.toUpperCase();
+
+  if (city == "BOISE" || city == "MERIDIAN" || city == "NAMPA") {
+    document.getElementById('cityResults').innerHTML = 'You chose an Idaho location.';
+  }
+}`,
+  prompt: 'Using the dropdown lists, complete the code to make the function work.',
+  choices: [
+    'city.toUpperCase(), ||, ||',
+    'city.toLowerCase(), &&, &&',
+    'city.toUpperCase(), &&, ||',
+    'city.trim(), ||, &&'
+  ],
+  answer: 0,
+  explanation: 'Converting to uppercase standardizes the text, and || checks whether the value matches any one of the allowed cities.'
+},
+{
+  id: 95,
+  title: 'QUESTION 95',
+  lead: 'Which are three potential locations for form submission that can be defined in a form tag\'s action attribute? (Choose three)',
+  prompt: 'Which choice lists the correct three?',
+  choices: [
+    'Database, Script, Another webpage',
+    'Firewall, Database, Another form',
+    'Script, Another form, Firewall',
+    'Database, Firewall, Script'
+  ],
+  answer: 0,
+  explanation: 'A form action can target a server-side script, another webpage, or a database-backed endpoint. The expected correct set here is Database, Script, and Another webpage.'
+},
+{
+  id: 96,
+  title: 'QUESTION 96',
+  lead: 'You are creating a form with an input field that will serve as a password field. Users are reporting that the password shows in plain text. You want the password to be hidden while typing it in the field.',
+  code: `<input type="text" name="password" id="password" type="password" />`,
+  prompt: 'Using the dropdown list, choose the correct attribute to make the field characters masked as they are typed.',
+  choices: [
+    'type="password"',
+    'name="password"',
+    'id="password"',
+    'hidden="true"'
+  ],
+  answer: 0,
+  explanation: 'The password input type masks the characters entered by the user.'
+},
+{
+  id: 97,
+  title: 'QUESTION 97',
+  lead: 'Evaluate the following code.',
+  code: `startDate = new Date('July 5, 2018 09:00:00 PM');
+
+document.getElementById('startMonth').innerHTML = startDate.getMonth();
+
+document.getElementById('hours').innerHTML = "You have " + // need hours left from startDate - " left in the day.";`,
+  prompt: 'Which combined answer is correct?',
+  choices: [
+    'startMonth = 6, use an array to map month numbers to month names, and use 24 - startDate.getHours()',
+    'startMonth = 7, use getMonthName(), and use 12 - startDate.getHours()',
+    'startMonth = 5, use toLocaleMonthString(), and use startDate.getHours() - 24',
+    'startMonth = 6, use getDay(), and use 24 + startDate.getHours()'
+  ],
+  answer: 0,
+  explanation: 'July is month index 6 in JavaScript, month names can be mapped from an array, and hours remaining in the day can be calculated with 24 - startDate.getHours().'
+},
+{
+  id: 98,
+  title: 'QUESTION 98',
+  lead: 'You have a problem with users entering negative numbers into a numeric field to report monthly revenues.',
+  code: `var revenue = Math.abs(document.getElementById('revenue').value);`,
+  prompt: 'Using the dropdown lists, add the necessary code to convert whatever a user types to a positive number.',
+  choices: [
+    'Math.abs( document.getElementById("revenue").value )',
+    'Math.round( document.getElementById("revenue").value )',
+    'parseInt( document.getElementById("revenue").value )',
+    'Math.max( document.getElementById("revenue").value )'
+  ],
+  answer: 0,
+  explanation: 'Math.abs() returns the absolute value, converting a negative numeric input to positive.'
+},
+{
+  id: 99,
+  title: 'QUESTION 99',
+  lead: 'You are working on a webpage that will display release dates for music for both the US and the UK.',
+  code: `releaseDate = new Date('November 16, 2018 12:00:00 AM');
+
+ukReleaseDate = releaseDate.toLocaleDateString('en-gb');`,
+  prompt: 'Using the dropdown list, select the correct method for assigning the releaseDate, in UK format, to the ukReleaseDate variable.',
+  choices: [
+    `releaseDate.toLocaleDateString('en-gb')`,
+    `releaseDate.toDateString('en-gb')`,
+    `releaseDate.getLocaleDateString('en-gb')`,
+    `releaseDate.toUTCString('en-gb')`
+  ],
+  answer: 0,
+  explanation: 'toLocaleDateString with the en-gb locale produces a UK-style date format.'
+},
+{
+  id: 100,
+  title: 'QUESTION 100',
+  lead: 'You have a 2 x 2 multidimensional array named questionnaire. You want to assign the name "Bob" to the first row and first column of the array.',
+  code: `questionnaire[0][0] = "Bob";`,
+  prompt: 'How would the syntax look for this assignment?',
+  choices: [
+    'questionnaire[0][0] = "Bob";',
+    'questionnaire[0,0] = "Bob";',
+    'questionnaire[1][1] = "Bob";',
+    'questionnaire[1,1] = "Bob";'
+  ],
+  answer: 0,
+  explanation: 'Multidimensional arrays are accessed by chaining bracket notation, starting at index 0.'
+},
+{
+  id: 101,
+  title: 'QUESTION 101',
+  lead: 'You are writing code for a series of training sessions. The sessions occur every seven days until the end date is reached. However, there is also a break date, and if the session falls on a break date, the session should not occur on that day but should continue seven days from then.',
+  code: `do {
+  sessionStartDate.setDate(sessionStartDate.getDate() + 7);
+
+  if (sessionStartDate.getDate() == sessionBreakDate.getDate()) {
+    continue;
+  }
+
+  detailsSchedule.innerHTML += "<br />" + sessionStartDate.toLocaleDateString();
+
+} while (sessionStartDate < sessionEndDate)`,
+  prompt: 'Using the dropdown areas, fill in the missing pieces of the code.',
+  choices: [
+    'if, continue, while',
+    'while, break, if',
+    'if, break, while',
+    'do, continue, if'
+  ],
+  answer: 0,
+  explanation: 'The break date is checked with if, continue skips only that iteration, and while controls the repeating loop.'
+},
+{
+  id: 102,
+  title: 'QUESTION 102',
+  lead: 'A user types a word into a number field on a form and then presses a calculation button, expecting a calculation to appear on the screen.',
+  prompt: 'What is the most likely outcome when this happens?',
+  choices: [
+    'NaN displays',
+    'An alert appears indicating that numbers are required',
+    'No result displays',
+    'The webpage crashes'
+  ],
+  answer: 0,
+  explanation: 'If a calculation expects a number but receives invalid text, the result commonly becomes NaN.'
+},
+{
+  id: 103,
+  title: 'QUESTION 103',
+  lead: 'A variable has been declared as follows: var x = 20; For each statement regarding assignment operators, select Yes if the statement is true and No if the statement is false.',
+  code: `var x = 20;
+
+x %= 5
+x *= 5
+x /= 5`,
+  prompt: 'Which Yes/No sequence is correct?',
+  choices: [
+    'No, Yes, Yes',
+    'Yes, No, Yes',
+    'No, Yes, No',
+    'Yes, Yes, Yes'
+  ],
+  answer: 0,
+  explanation: '20 % 5 is 0, so x %= 5 does not make x = 1. 20 * 5 = 100 and 20 / 5 = 4.'
+},
+{
+  id: 104,
+  title: 'QUESTION 104',
+  lead: 'A developer is writing code to have a function called getCurrentDate run when someone clicks on a button with the id, getDate.',
+  code: `document.getElementById('getDate').addEventListener("click", getCurrentDate);`,
+  prompt: 'Use the dropdown arrow to fill in the missing pieces of code for the line of code.',
+  choices: [
+    'addEventListener and click',
+    'attachEvent and onclick',
+    'addEvent and click',
+    'onEventListener and mousedown'
+  ],
+  answer: 0,
+  explanation: 'The standard DOM approach is addEventListener with the "click" event.'
+},
+{
+  id: 105,
+  title: 'QUESTION 105',
+  lead: 'A developer needs to be able to compare two strings, str1 and str2 and have the result return 0 if the strings are equal, -1 if str1 is lower in the alphabet than str2, and 1 if str1 is higher than str2. The developer then needs to set str1 to be empty but keep the data type of the variable as string.',
+  code: `str1 = "hi";
+str2 = "there";
+
+document.getElementById("compareStrings").innerHTML = str1.localeCompare(str2);
+
+str1 = "";`,
+  prompt: 'Using the dropdown arrows, complete the code example as necessary to accomplish both tasks.',
+  choices: [
+    'str1.localeCompare(str2) and ""',
+    'str1.compare(str2) and null',
+    'str1.localeCompare(str2) and null',
+    'str1.compareTo(str2) and ""'
+  ],
+  answer: 0,
+  explanation: 'localeCompare returns the expected comparison values, and assigning an empty string keeps the variable as a string.'
+}
+
 ];
