@@ -1,0 +1,583 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>ITS Certification: Python</title>
+  <style>
+    :root {
+      --bg: #f3f4f6;
+      --text: #1f2937;
+      --muted: #6b7280;
+      --line: #d1d5db;
+      --green: #178b53;
+      --green-dark: #116b40;
+      --gray-btn: #6b7280;
+      --gray-btn-dark: #4b5563;
+      --card: #ffffff;
+      --correct: #dcfce7;
+      --incorrect: #fee2e2;
+      --accent: #e5e7eb;
+    }
+
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: Arial, Helvetica, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+    }
+
+    .page {
+      max-width: 1280px;
+      margin: 0 auto;
+      padding: 24px 28px 40px;
+    }
+
+    h1 {
+      font-size: 34px;
+      margin: 0 0 28px;
+      font-weight: 700;
+    }
+
+    h2 {
+      font-size: 28px;
+      margin: 0 0 28px;
+      font-weight: 800;
+      text-transform: uppercase;
+    }
+
+    .toolbar {
+      display: flex;
+      gap: 12px;
+      margin-bottom: 20px;
+      flex-wrap: wrap;
+    }
+
+    .rule {
+      border: 0;
+      border-top: 2px solid var(--line);
+      margin: 20px 0 28px;
+    }
+
+    .btn {
+      border: 0;
+      border-radius: 10px;
+      padding: 16px 28px;
+      color: #fff;
+      font-size: 19px;
+      cursor: pointer;
+      font-weight: 700;
+      min-width: 120px;
+      transition: transform .06s ease, opacity .2s ease, background .2s ease;
+    }
+    .btn:hover { transform: translateY(-1px); }
+    .btn:disabled {
+      opacity: .6;
+      cursor: not-allowed;
+      transform: none;
+    }
+    .btn-green { background: var(--green); }
+    .btn-green:hover { background: var(--green-dark); }
+    .btn-gray { background: var(--gray-btn); }
+    .btn-gray:hover { background: var(--gray-btn-dark); }
+
+    .question-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+      gap: 26px 32px;
+      margin-top: 10px;
+    }
+
+    .q-tile {
+      width: 100%;
+      padding: 18px 20px;
+      border-radius: 10px;
+      border: none;
+      color: #fff;
+      background: var(--green);
+      font-size: 18px;
+      font-weight: 700;
+      cursor: pointer;
+      min-height: 54px;
+    }
+    .q-tile.current { outline: 4px solid #0f5e39; }
+    .q-tile.answered { box-shadow: inset 0 0 0 3px rgba(255,255,255,.55); }
+
+    .lead {
+      font-size: 18px;
+      line-height: 1.6;
+      margin: 0 0 18px;
+    }
+
+    .code-block {
+      background: transparent;
+      padding: 6px 0 18px 48px;
+      font-family: "Courier New", monospace;
+      font-size: 18px;
+      white-space: pre-wrap;
+      line-height: 1.55;
+    }
+
+    .prompt {
+      font-size: 18px;
+      line-height: 1.6;
+      margin: 18px 0 24px;
+    }
+
+    .choices {
+      display: grid;
+      gap: 14px;
+      max-width: 860px;
+    }
+
+    .choice {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      background: var(--card);
+      border: 2px solid var(--accent);
+      border-radius: 12px;
+      padding: 16px 18px;
+      cursor: pointer;
+      font-size: 18px;
+    }
+    .choice input { transform: scale(1.2); }
+    .choice.correct { background: var(--correct); border-color: #22c55e; }
+    .choice.incorrect { background: var(--incorrect); border-color: #ef4444; }
+    .choice.locked { cursor: default; }
+
+    .summary {
+      margin-top: 28px;
+      background: var(--card);
+      border: 2px solid var(--accent);
+      border-radius: 16px;
+      padding: 20px;
+      max-width: 900px;
+    }
+
+    .summary h3 {
+      margin: 0 0 12px;
+      font-size: 22px;
+    }
+
+    .summary-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+      gap: 14px;
+      margin: 14px 0 4px;
+    }
+
+    .summary-item {
+      background: #f9fafb;
+      border-radius: 12px;
+      padding: 14px;
+      border: 1px solid var(--accent);
+    }
+
+    .summary-label {
+      font-size: 13px;
+      color: var(--muted);
+      text-transform: uppercase;
+      letter-spacing: .04em;
+    }
+
+    .summary-value {
+      margin-top: 6px;
+      font-size: 24px;
+      font-weight: 800;
+    }
+
+    .hidden { display: none; }
+
+    .review-list {
+      display: grid;
+      gap: 10px;
+      margin-top: 14px;
+    }
+
+    .review-row {
+      background: #f9fafb;
+      border-radius: 10px;
+      padding: 12px 14px;
+      border: 1px solid var(--accent);
+      font-size: 15px;
+      line-height: 1.5;
+    }
+
+    .review-row.correct { border-left: 6px solid #16a34a; }
+    .review-row.incorrect { border-left: 6px solid #dc2626; }
+
+    @media (max-width: 720px) {
+      h1 { font-size: 28px; }
+      h2 { font-size: 24px; }
+      .page { padding: 18px 16px 32px; }
+      .code-block { padding-left: 8px; font-size: 16px; }
+      .btn { width: 100%; }
+      .toolbar { flex-direction: column; }
+    }
+  </style>
+</head>
+<body>
+  <div class="page">
+    <section id="listView">
+      <h1>ITS Certification: Python</h1>
+      <div class="toolbar">
+        <button class="btn btn-green" id="resetFromList">Reset Progress</button>
+      </div>
+      <hr class="rule" />
+      <div class="summary" id="topSummary">
+        <h3>Progress Summary</h3>
+        <div class="summary-grid">
+          <div class="summary-item">
+            <div class="summary-label">Correct Points</div>
+            <div class="summary-value" id="scoreValue">0</div>
+          </div>
+          <div class="summary-item">
+            <div class="summary-label">Answered</div>
+            <div class="summary-value" id="answeredValue">0</div>
+          </div>
+          <div class="summary-item">
+            <div class="summary-label">Remaining</div>
+            <div class="summary-value" id="remainingValue">0</div>
+          </div>
+          <div class="summary-item">
+            <div class="summary-label">Accuracy</div>
+            <div class="summary-value" id="accuracyValue">0%</div>
+          </div>
+        </div>
+      </div>
+      <div class="question-grid" id="questionGrid"></div>
+    </section>
+
+    <section id="questionView" class="hidden">
+      <h2 id="questionTitle">Question 1</h2>
+      <div class="toolbar">
+        <button class="btn btn-gray" id="backToListTop">LIST</button>
+        <button class="btn btn-green" id="nextTop">NEXT &gt;&gt;</button>
+      </div>
+      <hr class="rule" />
+
+      <p class="lead" id="questionLead"></p>
+      <pre class="code-block" id="questionCode"></pre>
+      <p class="prompt" id="questionPrompt"></p>
+
+      <div class="choices" id="choices"></div>
+
+      <div class="summary" id="questionSummary">
+        <h3>Progress Summary</h3>
+        <div class="summary-grid">
+          <div class="summary-item">
+            <div class="summary-label">Correct Points</div>
+            <div class="summary-value" id="qScoreValue">0</div>
+          </div>
+          <div class="summary-item">
+            <div class="summary-label">Answered</div>
+            <div class="summary-value" id="qAnsweredValue">0</div>
+          </div>
+          <div class="summary-item">
+            <div class="summary-label">Remaining</div>
+            <div class="summary-value" id="qRemainingValue">0</div>
+          </div>
+          <div class="summary-item">
+            <div class="summary-label">Accuracy</div>
+            <div class="summary-value" id="qAccuracyValue">0%</div>
+          </div>
+        </div>
+        <div class="review-list" id="reviewList"></div>
+      </div>
+
+      <div class="toolbar" style="margin-top: 26px;">
+        <button class="btn btn-gray" id="backToListBottom">LIST</button>
+        <button class="btn btn-green" id="nextBottom">NEXT &gt;&gt;</button>
+      </div>
+    </section>
+  </div>
+
+  <script>
+    const questions = [
+      {
+        id: 1,
+        title: 'QUESTION 1',
+        lead: 'You are developing a Python application for your company. You write the following code.',
+        code: `numList = [1, 2, 3, 4, 5]\nalphaList = ["a", "b", "c", "d", "e"]\nprint(numList is alphaList)\nprint(numList == alphaList)\nnumList = alphaList\nprint(numList is alphaList)\nprint(numList == alphaList)`,
+        prompt: 'What sequence is displayed by the four print statements?',
+        choices: [
+          'False, False, True, True',
+          'False, True, True, False',
+          'True, False, False, True',
+          'True, True, True, True'
+        ],
+        answer: 0,
+        explanation: '`is` checks object identity. Initially the lists are different objects and not equal in content. After `numList = alphaList`, both names reference the same list, so both checks become True.'
+      },
+      {
+        id: 2,
+        title: 'QUESTION 2',
+        lead: 'You are working with Python collections.',
+        code: `values = [10, 20, 30]\nvalues.append(40)\nvalues.insert(1, 15)\nprint(values)`,
+        prompt: 'What is printed?',
+        choices: [
+          '[10, 20, 30, 40, 15]',
+          '[10, 15, 20, 30, 40]',
+          '[15, 10, 20, 30, 40]',
+          '[10, 20, 15, 30, 40]'
+        ],
+        answer: 1,
+        explanation: '`append(40)` adds to the end. `insert(1, 15)` inserts 15 at index 1.'
+      },
+      {
+        id: 3,
+        title: 'QUESTION 3',
+        lead: 'You need to evaluate basic Python string behavior.',
+        code: `text = "Python"\nprint(text[0])\nprint(len(text))`,
+        prompt: 'Which outputs are correct?',
+        choices: [
+          'P and 6',
+          'y and 5',
+          'P and 5',
+          '0 and 6'
+        ],
+        answer: 0,
+        explanation: 'The first character at index 0 is `P`, and the length of `Python` is 6.'
+      },
+      {
+        id: 4,
+        title: 'QUESTION 4',
+        lead: 'You are writing conditional logic in Python.',
+        code: `x = 7\ny = 4\nif x > 5 and y < 5:\n    print("A")\nelse:\n    print("B")`,
+        prompt: 'What is displayed?',
+        choices: ['A', 'B', 'True', 'False'],
+        answer: 0,
+        explanation: 'Both conditions are True, so the `if` block runs.'
+      },
+      {
+        id: 5,
+        title: 'QUESTION 5',
+        lead: 'You are creating a function in Python.',
+        code: `def multiply(a, b=2):\n    return a * b\n\nprint(multiply(5))`,
+        prompt: 'What is displayed?',
+        choices: ['2', '5', '7', '10'],
+        answer: 3,
+        explanation: 'Because `b` defaults to 2, the result is `5 * 2`.'
+      },
+      {
+        id: 6,
+        title: 'QUESTION 6',
+        lead: 'You are evaluating a Python loop.',
+        code: `total = 0\nfor i in range(1, 4):\n    total += i\nprint(total)`,
+        prompt: 'What is printed?',
+        choices: ['3', '6', '7', '10'],
+        answer: 1,
+        explanation: '`range(1, 4)` produces 1, 2, 3. Their sum is 6.'
+      },
+      {
+        id: 7,
+        title: 'QUESTION 7',
+        lead: 'You are working with dictionaries in Python.',
+        code: `person = {"name": "Ana", "age": 19}\nprint(person["name"])`,
+        prompt: 'What is displayed?',
+        choices: ['person', 'Ana', 'name', '19'],
+        answer: 1,
+        explanation: 'The key `"name"` returns the value `"Ana"`.'
+      },
+      {
+        id: 8,
+        title: 'QUESTION 8',
+        lead: 'You need to identify the Python data type.',
+        code: `value = (1, 2, 3)`,
+        prompt: 'What type of object is `value`?',
+        choices: ['list', 'tuple', 'set', 'dict'],
+        answer: 1,
+        explanation: 'Parentheses with comma-separated items create a tuple.'
+      }
+    ];
+
+    const storageKey = 'its_python_quiz_progress_v1';
+    const state = loadState();
+    let currentQuestion = state.currentQuestion || 1;
+
+    const listView = document.getElementById('listView');
+    const questionView = document.getElementById('questionView');
+    const questionGrid = document.getElementById('questionGrid');
+    const questionTitle = document.getElementById('questionTitle');
+    const questionLead = document.getElementById('questionLead');
+    const questionCode = document.getElementById('questionCode');
+    const questionPrompt = document.getElementById('questionPrompt');
+    const choicesEl = document.getElementById('choices');
+    const reviewList = document.getElementById('reviewList');
+
+    document.getElementById('backToListTop').addEventListener('click', showList);
+    document.getElementById('backToListBottom').addEventListener('click', showList);
+    document.getElementById('nextTop').addEventListener('click', nextQuestion);
+    document.getElementById('nextBottom').addEventListener('click', nextQuestion);
+    document.getElementById('resetFromList').addEventListener('click', resetProgress);
+
+    renderGrid();
+    updateAllSummaries();
+    showList();
+
+    function loadState() {
+      try {
+        const saved = JSON.parse(localStorage.getItem(storageKey));
+        if (saved && typeof saved === 'object') return { answers: saved.answers || {}, currentQuestion: saved.currentQuestion || 1 };
+      } catch (e) {}
+      return { answers: {}, currentQuestion: 1 };
+    }
+
+    function saveState() {
+      localStorage.setItem(storageKey, JSON.stringify(state));
+    }
+
+    function resetProgress() {
+      if (!confirm('Reset saved progress and score?')) return;
+      state.answers = {};
+      currentQuestion = 1;
+      state.currentQuestion = 1;
+      saveState();
+      renderGrid();
+      updateAllSummaries();
+      showList();
+    }
+
+    function getMetrics() {
+      const answeredIds = Object.keys(state.answers);
+      let correct = 0;
+      answeredIds.forEach(id => {
+        const q = questions.find(item => item.id === Number(id));
+        if (q && state.answers[id] === q.answer) correct += 1;
+      });
+      const answered = answeredIds.length;
+      const remaining = questions.length - answered;
+      const accuracy = answered ? Math.round((correct / answered) * 100) : 0;
+      return { correct, answered, remaining, accuracy };
+    }
+
+    function updateAllSummaries() {
+      const m = getMetrics();
+      ['scoreValue','qScoreValue'].forEach(id => document.getElementById(id).textContent = m.correct);
+      ['answeredValue','qAnsweredValue'].forEach(id => document.getElementById(id).textContent = m.answered + '/' + questions.length);
+      ['remainingValue','qRemainingValue'].forEach(id => document.getElementById(id).textContent = m.remaining);
+      ['accuracyValue','qAccuracyValue'].forEach(id => document.getElementById(id).textContent = m.accuracy + '%');
+      renderReviewList();
+    }
+
+    function renderReviewList() {
+      reviewList.innerHTML = '';
+      questions.forEach(q => {
+        if (!(q.id in state.answers)) return;
+        const userIndex = state.answers[q.id];
+        const correct = userIndex === q.answer;
+        const row = document.createElement('div');
+        row.className = 'review-row ' + (correct ? 'correct' : 'incorrect');
+        row.innerHTML = `<strong>Question ${q.id}:</strong> ${correct ? 'Correct' : 'Incorrect'}<br>` +
+          `Your answer: ${escapeHtml(q.choices[userIndex])}<br>` +
+          `Correct answer: ${escapeHtml(q.choices[q.answer])}`;
+        reviewList.appendChild(row);
+      });
+      if (!reviewList.children.length) {
+        const row = document.createElement('div');
+        row.className = 'review-row';
+        row.textContent = 'Answer a question to see your running review summary here.';
+        reviewList.appendChild(row);
+      }
+    }
+
+    function renderGrid() {
+      questionGrid.innerHTML = '';
+      questions.forEach(q => {
+        const btn = document.createElement('button');
+        btn.className = 'q-tile';
+        if (q.id === currentQuestion) btn.classList.add('current');
+        if (q.id in state.answers) btn.classList.add('answered');
+        btn.textContent = `Question ${q.id}`;
+        btn.addEventListener('click', () => showQuestion(q.id));
+        questionGrid.appendChild(btn);
+      });
+    }
+
+    function showList() {
+      listView.classList.remove('hidden');
+      questionView.classList.add('hidden');
+      renderGrid();
+      updateAllSummaries();
+    }
+
+    function showQuestion(id) {
+      currentQuestion = id;
+      state.currentQuestion = id;
+      saveState();
+      renderQuestion();
+      renderGrid();
+      listView.classList.add('hidden');
+      questionView.classList.remove('hidden');
+    }
+
+    function nextQuestion() {
+      const next = currentQuestion < questions.length ? currentQuestion + 1 : 1;
+      showQuestion(next);
+    }
+
+    function renderQuestion() {
+      const q = questions.find(item => item.id === currentQuestion);
+      questionTitle.textContent = q.title;
+      questionLead.textContent = q.lead;
+      questionCode.textContent = q.code || '';
+      questionCode.style.display = q.code ? 'block' : 'none';
+      questionPrompt.textContent = q.prompt;
+      choicesEl.innerHTML = '';
+
+      const selected = state.answers[q.id];
+      const locked = typeof selected === 'number';
+
+      q.choices.forEach((choice, index) => {
+        const label = document.createElement('label');
+        label.className = 'choice' + (locked ? ' locked' : '');
+        if (locked && index === q.answer) label.classList.add('correct');
+        if (locked && index === selected && selected !== q.answer) label.classList.add('incorrect');
+
+        const input = document.createElement('input');
+        input.type = 'radio';
+        input.name = 'choice';
+        input.checked = selected === index;
+        input.disabled = locked;
+        input.addEventListener('change', () => answerQuestion(q.id, index));
+
+        const span = document.createElement('span');
+        span.textContent = choice;
+
+        label.appendChild(input);
+        label.appendChild(span);
+        choicesEl.appendChild(label);
+      });
+
+      const note = document.createElement('div');
+      note.className = 'review-row';
+      note.style.marginTop = '12px';
+      if (locked) {
+        note.innerHTML = `<strong>Explanation:</strong> ${q.explanation}`;
+      } else {
+        note.innerHTML = 'Choose one answer. Your result and total correct points are saved automatically in your browser.';
+      }
+      choicesEl.appendChild(note);
+
+      updateAllSummaries();
+    }
+
+    function answerQuestion(id, choiceIndex) {
+      if (id in state.answers) return;
+      state.answers[id] = choiceIndex;
+      saveState();
+      renderQuestion();
+      renderGrid();
+      updateAllSummaries();
+    }
+
+    function escapeHtml(text) {
+      const div = document.createElement('div');
+      div.textContent = text;
+      return div.innerHTML;
+    }
+  </script>
+</body>
+</html>
